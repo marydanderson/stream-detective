@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { UserLibraryComponent } from './user-library/user-library.component';
+import { UserLibraryComponent } from './logged-in-mainpage/user-library/user-library.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './logged-in-mainpage/search/search.component';
+import { LoggedInMainpageComponent } from './logged-in-mainpage/logged-in-mainpage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchComponent } from './search/search.component';
     SignUpComponent,
     UserLibraryComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    LoggedInMainpageComponent
   ],
   imports: [
     BrowserModule,
