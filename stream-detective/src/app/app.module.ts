@@ -10,6 +10,11 @@ import { UserLibraryComponent } from './logged-in-mainpage/user-library/user-lib
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SearchComponent } from './logged-in-mainpage/search/search.component';
 import { LoggedInMainpageComponent } from './logged-in-mainpage/logged-in-mainpage.component';
+// Firebase and Firestore AUTH
+import { environment } from 'src/environments/environment';
+import {AngularFireModule} from '@angular/fire/compat'
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import { LoggedInMainpageComponent } from './logged-in-mainpage/logged-in-mainpa
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

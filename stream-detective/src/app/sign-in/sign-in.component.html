@@ -1,1 +1,45 @@
-<p>sign-in works!</p>
+
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+        <h5>
+            Sign In
+        </h5>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSignIn(form)" #form="ngForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+              required
+              ngModel
+              name="email"
+              #email="ngModel">
+              <span class="help-block" *ngIf="!email.valid && email.touched">Enter email</span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Enter password"
+              #password="ngModel"
+              required
+              ngModel password
+              name="password">
+              <span class="help-block" *ngIf="!password.valid && password.touched">Enter password</span>
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid" >Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div>
