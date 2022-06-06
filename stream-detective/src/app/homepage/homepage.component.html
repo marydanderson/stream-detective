@@ -1,4 +1,28 @@
-<p>homepage works!</p>
-<app-sign-in></app-sign-in>
-<app-sign-up></app-sign-up>
+<!-- <p>homepage works!</p> -->
+
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      <h1>Stream Detective</h1>
+      <h4>Discover if your favorite shows & movies are on a streaming service</h4>
+    </div>
+  </div>
+  <div class="row text-center justify-content-center">
+    <div class="col">
+      <div class="card">
+        IMAGE HERE
+      </div>
+    </div>
+    <div class="col">
+      <div class="div" *ngIf="onSignIn">
+        <app-sign-in></app-sign-in>
+        Not a user? <button class="btn btn-primary" (click)="onClickBoolean('sign in')">Sign up here</button>
+      </div>
+      <div class="div" *ngIf="onSignUp">
+        <app-sign-up></app-sign-up>
+        Already a user? <button class="btn btn-primary" (click)="onClickBoolean('sign up')">Sign in here</button>
+      </div>
+    </div>
+  </div>
+</div>
 
