@@ -11,7 +11,7 @@ const routes: Routes = [
       { path: "search", component: SearchComponent },
       { path: "library", component: UserLibraryComponent },
     ]
-  }
+  },
 ];
 
 @NgModule({
