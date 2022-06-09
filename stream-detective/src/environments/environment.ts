@@ -9,5 +9,6 @@ export const environment = {
     storageBucket: "stream-detective.appspot.com",
     messagingSenderId: "579820366785",
     appId: "1:579820366785:web:eb9bee9f87b81bf1305d40"
-  }
+  },
+  watchModeAPIKey : "7ZqZHiPyzpdTagJ9Teu7GF84hCYcNexMLf2aFtZH"
 };
