@@ -12,7 +12,9 @@ import { SearchComponent } from './logged-in-mainpage/search/search.component';
 import { LoggedInMainpageComponent } from './logged-in-mainpage/logged-in-mainpage.component';
 // Firebase and Firestore AUTH
 import { environment } from 'src/environments/environment';
-import {AngularFireModule} from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat'; // firebase
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // firestore
+
 
 import { FormsModule } from '@angular/forms';
 
@@ -31,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

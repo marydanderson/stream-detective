@@ -16,11 +16,11 @@
     <div class="col">
       <div class="div" *ngIf="onSignIn">
         <app-sign-in></app-sign-in>
-        Not a user? <button class="btn btn-primary" (click)="onClickBoolean('sign in')">Sign up here</button>
+       <span class="misc-text">Not a user? </span>  <button class="btn button-secondary" (click)="onClickBoolean('sign in')">Sign up here</button>
       </div>
       <div class="div" *ngIf="onSignUp">
         <app-sign-up></app-sign-up>
-        Already a user? <button class="btn btn-primary" (click)="onClickBoolean('sign up')">Sign in here</button>
+        <span class="misc-text">Already a user?</span> <button class="btn button-secondary" (click)="onClickBoolean('sign up')">Sign in here</button>
       </div>
     </div>
   </div>
