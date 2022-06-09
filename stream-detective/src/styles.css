@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* colors to reuse */
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Russo+One&display=swap');
+/* font-family: 'Russo One', sans-serif; */
+
+:root {
+  --main-red: #c7493a;
+  --main-green: #689775;
+  --dark-tan: #917164;
+  --light-tan: #ad8174;
+  --main-white: rgba(245, 245, 245, 0.824);
+}
+
+html {
+  background-image: url('https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size:cover;
+}
+
+h1 {
+  color: var(--main-red);
+  font-family: 'Russo One', sans-serif;
+}
+
+.button-main {
+  background: var(--main-white);
+  border-radius: 999px;
+  box-shadow: black 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: var(--dark-tan);
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
+.button-secondary {
+  background: var(--main-red);
+  border-radius: 999px;
+  box-shadow: white 0 5px 20px -10px;
+  box-sizing: border-box;
+  color: var(--main-white);
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
