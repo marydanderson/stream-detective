@@ -1,0 +1,12 @@
+li {
+  margin-right: 1em;
+}
+
+a {
+  color: darkgray;
+}
+
+#signOut {
+  color: darkgray;
+  background-color: #212529;
+}

@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: "search", component: SearchComponent },
       { path: "library", component: UserLibraryComponent },
     ]
-  }
+  },
 ];
 
 // canActivate: [AuthGuard],
