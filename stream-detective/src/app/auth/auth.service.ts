@@ -42,6 +42,7 @@ export class AuthService {
       .then((result) => {
         console.log('user signed up: ', result);
         this.setUserData(result.user); //save to firestore
+        this.setUserData
         this.router.navigate(['home']) //navigate to user home page upon sign up
       })
       .catch((error) => {
@@ -65,17 +66,19 @@ export class AuthService {
 
   signOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeitem('user');
+      localStorage.removeItem('user');
       this.router.navigate([''])
     });
   }
 
   //  Save User Data  upon sign in / sign up so it can be saved to local storage
+
   setUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
-      email: user.email
+      email: user.email,
+      // subscribedStream: user.subscribedStream
     };
     console.log('data set of user signed in: ', userData.email)
     return userRef.set(userData, {

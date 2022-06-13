@@ -1,1 +1,47 @@
-<p>user-library works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h1>Watchlist Library</h1>
+    </div>
+    <div class="col-3">
+      <div class="card my-3">
+        FUTURE filter / query here
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <!-- START OF INDV. WATCHLIST CARD -->
+      <div class="cards-grid">
+        <div class="card">
+          <h5 class="card-header">
+            Movie/Series Title
+          </h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              # Seasons
+            </li>
+            <li class="list-group-item">
+              # Episodes
+            </li>
+          <!--STREAMING PLATFORM; list w/ ngIf-->
+            <li class="list-group-item">
+              <div class="badge badge-pill badge-primary mx-1">
+                Netflix
+              </div>
+              <div class="badge badge-pill badge-primary">
+                Hulu
+              </div>
+          <!-- END STREAMING PLATFORM NGIF -->
+            </li>
+          </ul>
+          <div class="card-footer text-center">
+            <button class="btn button-secondary">Remove</button>
+          </div>
+        </div>
+      </div>
+      <!-- END OF INDV. WATCHLIST CARD -->
+    </div>
+  </div>
+</div>
+
