@@ -4,6 +4,7 @@ export class User {
     public uid?: string,
     public displayName?: string,
     public photoURL?: string,
+    public streaming?: string
   ) {}
 
 }

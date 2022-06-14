@@ -36,14 +36,13 @@ export class AuthService {
    }
 
   // Sign Up w/ Firebase Auth
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string, displayName: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log('user signed up: ', result);
-        this.setUserData(result.user); //save to firestore
-        this.setUserData
-        this.router.navigate(['home']) //navigate to user home page upon sign up
+        this.setUserData(result.user.email, result.user.uid, displayName); //save to firestore
+        console.log('userData UID: ', result.user.uid);
+        // this.router.navigate(['home']) //navigate to user home page upon sign up
       })
       .catch((error) => {
       window.alert(error.message)
@@ -52,16 +51,16 @@ export class AuthService {
 
   // Sign In w/ Firebase Auth
   signIn(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.setUserData(result.user)
-        this.router.navigate(['home'])
-        return this.dataObservable.next(this.userData)
-      })
-      .catch((error) => {
-        window.alert(error.message)
-      })
+    // return this.afAuth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then((result) => {
+    //     this.setUserData(result.user)
+    //     this.router.navigate(['home'])
+    //     return this.dataObservable.next(this.userData)
+    //   })
+    //   .catch((error) => {
+    //     window.alert(error.message)
+    //   })
   }
 
   signOut() {
@@ -73,18 +72,20 @@ export class AuthService {
 
   //  Save User Data  upon sign in / sign up so it can be saved to local storage
 
-  setUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+  setUserData(email: string, uid: string, displayName: string) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
     const userData: User = {
-      uid: user.uid,
-      email: user.email,
+      uid: uid,
+      email: email,
+      displayName: displayName
       // subscribedStream: user.subscribedStream
     };
-    console.log('data set of user signed in: ', userData.email)
+    console.log('data set of user signed in: ', userData)
     return userRef.set(userData, {
       merge: true
     });
   }
+
 
   // for Auth Guard; returns true when user is logged in
   get isLoggedIn(): boolean {
