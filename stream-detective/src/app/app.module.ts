@@ -18,6 +18,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // fire
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     UserLibraryComponent,
     NavbarComponent,
     SearchComponent,
-    LoggedInMainpageComponent
+    LoggedInMainpageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
