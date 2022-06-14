@@ -40,9 +40,9 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.setUserData(result.user.email, result.user.uid, displayName); //save to firestore
+        this.setNewUserData(result.user.email, result.user.uid, displayName); //save to firestore
         console.log('userData UID: ', result.user.uid);
-        // this.router.navigate(['home']) //navigate to user home page upon sign up
+        this.router.navigate(['home']) //navigate to user home page upon sign up
       })
       .catch((error) => {
       window.alert(error.message)
@@ -51,16 +51,16 @@ export class AuthService {
 
   // Sign In w/ Firebase Auth
   signIn(email: string, password: string) {
-    // return this.afAuth
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then((result) => {
-    //     this.setUserData(result.user)
-    //     this.router.navigate(['home'])
-    //     return this.dataObservable.next(this.userData)
-    //   })
-    //   .catch((error) => {
-    //     window.alert(error.message)
-    //   })
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.setUserData(result.user.email, result.user.uid)
+        this.router.navigate(['home'])
+        return this.dataObservable.next(this.userData)
+      })
+      .catch((error) => {
+        window.alert(error.message)
+      })
   }
 
   signOut() {
@@ -70,14 +70,26 @@ export class AuthService {
     });
   }
 
-  //  Save User Data  upon sign in / sign up so it can be saved to local storage
-
-  setUserData(email: string, uid: string, displayName: string) {
+  //  Save User Data  upon sign up so it can be saved to local storage | create user profile WORK IN PROGRESS
+  setNewUserData(email: string, uid: string, displayName: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
     const userData: User = {
       uid: uid,
       email: email,
       displayName: displayName
+      // subscribedStream: user.subscribedStream
+    };
+    console.log('data set of user signed in: ', userData)
+    return userRef.set(userData, {
+      merge: true
+    });
+  }
+
+  setUserData(email: string, uid: string,) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
+    const userData: User = {
+      uid: uid,
+      email: email,
       // subscribedStream: user.subscribedStream
     };
     console.log('data set of user signed in: ', userData)

@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
     // this.streamingServices.push(form.value.netflix)
     console.log('streaming services', form.value.netflix);
 
-    // this.authService.signUp(userEmail, userPassword, dispName)
+    this.authService.signUp(userEmail, userPassword, dispName)
   }
 
   ngOnDestory() {
