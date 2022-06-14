@@ -17,7 +17,8 @@ searchForTitle(movieTitle : string) {
   return this.http.get(`https://api.watchmode.com/v1/search/?apiKey=${environment.watchModeAPIKey}&search_field=${'name'}&search_value=${movieTitle}&types=${'tv,movie'}`)
 }
 
+//Given the movie's id, return a list of streaming services that the movie is on
 searchforStreamingServices(movieID : number){
-  
+  return this.http.get(`https://api.watchmode.com/v1/title/${movieID}/sources/?apiKey=${environment.watchModeAPIKey}`)
 }
 }
