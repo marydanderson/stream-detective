@@ -69,5 +69,20 @@
     </div>
   </div>
 
- -->
+<h2>Search Results:</h2>
+<li *ngFor="let movie of movieTitleList">
+{{movie.name}}
+</li>
+<div>
+  <div *ngIf="titleClicked !== ''">
+    <h3> {{titleClicked}}</h3>
+    <h3> Streaming Services: </h3>
+    <h4 *ngFor="let item of results"> {{item.name}}</h4>
+  <br>
+</div>
+<ul class = "text movieList" *ngFor="let movie of movieTitleList">
+  <p (click)="streamingServices = clickMovie(movie.id, movie.name)">{{movie.name}}</p>
+</ul>
+</div>
+
 
