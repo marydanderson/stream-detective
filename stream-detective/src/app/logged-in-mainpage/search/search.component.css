@@ -1,14 +1,14 @@
-h2 {
-  color :aliceblue
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&family=Russo+One&display=swap');
+
+
 
 h3 {
-  color :aliceblue
+  font-family: 'Russo One';
+  margin-bottom: 0px;
+  color: var(--main-green);
+  text-shadow: 1px 4px 10px rgba(32, 32, 32, 0.6);
 }
 
-h4 {
-  color :aliceblue
-}
 
 ul
  {
@@ -19,3 +19,18 @@ ul
  .text{
   cursor: pointer;
  }
+
+ .bg-gray {
+  background-color: rgba(136, 141, 139, 0.569)
+ }
+
+ .roboto {
+  font-family: 'Roboto';
+ }
+
+ .white-text {
+  color: whitesmoke;
+ }
+
+
+

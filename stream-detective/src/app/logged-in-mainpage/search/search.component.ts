@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SearchApiData, UserLibraryData } from 'src/app/shared/streaming-data.model';
+import { UserLibraryService } from '../user-library/user-library.service';
 import { WatchmodeApiService } from './watchmode-api.service';
 
 @Component({
@@ -13,12 +15,18 @@ export class SearchComponent implements OnInit {
   movieTitle : string;
   results = [];
   titleClicked = '';
-  constructor(private watchModeAPI: WatchmodeApiService) { }
+  // Mary add:
+  userLibraryObject: UserLibraryData;
+
+
+
+  constructor(private watchModeAPI: WatchmodeApiService, private userLibraryServcice: UserLibraryService) { }
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       'movieTitleSearchValue': new FormControl(null)
     });
+
   }
 
 //Used to reset the results to blank.
@@ -34,26 +42,37 @@ getSearchResults(){
   this.resetResults()
   this.movieTitle = this.reactiveForm.value.movieTitleSearchValue
   this.watchModeAPI.searchForTitle(this.movieTitle).subscribe((data: any[])=>{
-    console.log(data);
     this.movieTitleList = data['title_results'];
-    console.log(this.movieTitleList)
-})
+    console.log('api search service data: ', data);
+  })
 }
 
 setResults(res : any[], name : string){
   this.results = res;
-  this.titleClicked = name
-  console.log(this.results)
+  this.titleClicked = name;
+  console.log('set results method:', this.results);
 }
+
 
 clickMovie(movieID : number, name : string){
-  this.watchModeAPI.searchforStreamingServices(movieID).subscribe((data: any[])=>{
-
+  this.watchModeAPI.searchforStreamingServices(movieID).subscribe((data: any[]) => {
     const filterArray = [203,26,372,380,157,387,388,79,444,371, ];
     const result = data.filter(({ source_id }) => filterArray.includes(source_id));
-    this.setResults(result, name)
+    console.log('data: ', result)
+    this.setResults(result, name) // logs to console & sets result
+    // format API data into usable Object
+    this.userLibraryObject = this.watchModeAPI.formatApiData(result, name);
   })
-  return this.results
+  console.log('results: ', this.results)
+  return this.userLibraryObject;
+  // return this.results
 }
+
+
+// Add movie to UserLibrary Firestore on click
+  onAddToLibrary(movie) {
+    this.userLibraryServcice.addToWatchlist(movie)
+  }
+
 
 }

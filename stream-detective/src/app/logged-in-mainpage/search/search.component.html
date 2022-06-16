@@ -1,27 +1,73 @@
-<nav class="navbar navbar-light bg-light">
-  <form [formGroup]="reactiveForm"  (ngSubmit)="getSearchResults()">
-    <div class="form-group">
-      <label for="movieTitleSearchValue">Search for a Movie</label>
-      <input
-        type ="text"
-        class="form-control"
-        id = 'movieTitleSearchValue'
-        formControlName="movieTitleSearchValue">
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <form [formGroup]="reactiveForm" (ngSubmit)="getSearchResults()">
+        <div class="card text-center form-group bg-gray">
+          <div class="card-body">
+            <h3>
+              <label for="movieTitleSearchValue">Search for a Movie</label>
+            </h3>
+            <p class="card-text roboto white-text">Is your movie/show on a streaming service? Find out!</p>
+            <!-- input -->
+            <input
+              type ="text"
+              class="form-control"
+              id = 'movieTitleSearchValue'
+              formControlName="movieTitleSearchValue"
+              placeholder="Search for next show binge here...">
+              <button class="btn button-secondary my-2" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+
     </div>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  </nav>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div id="accordion" *ngFor="let movie of movieTitleList; index as i">
+        <div class="card" >
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="false">
+                <span (click)="streamingServices = clickMovie(movie.id, movie.name)">{{movie.name}}</span>
+              </button>
+              <button class="btn btn-secondary float-right" (click)="onAddToLibrary(userLibraryObject)">Add to Library</button>
+            </h5>
+          </div>
+          <div class="collapse" [attr.id]="'collapse' + i">
+            <div class="card-body">
+              <p *ngFor="let item of userLibraryObject.streamName">{{item}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h2>Search Results:</h2>
 
-<div>
-  <div *ngIf="titleClicked !== ''">
-    <h3> {{titleClicked}}</h3>
-    <h3> Streaming Services: </h3>
-    <h4 *ngFor="let item of results"> {{item.name}}</h4>
-  <br>
-</div>
-<ul class = "text movieList" *ngFor="let movie of movieTitleList">
-  <p (click)="streamingServices = clickMovie(movie.id, movie.name)">{{movie.name}}</p>
-</ul>
-</div>
+
+
+  <!-- <div class="row">
+    <div class="col-8">
+      <div id="accordion" *ngFor="let movie of movieTitleList; index as i">
+        <div class="card" >
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="false">
+                <span (click)="streamingServices = clickMovie(movie.id, movie.name)">{{movie.name}}</span>
+              </button>
+              <button class="btn btn-secondary float-right" (click)="onAddToLibrary()">Add to Library</button>
+            </h5>
+          </div>
+          <div class="collapse" [attr.id]="'collapse' + i">
+            <div class="card-body">
+              <p *ngFor="let item of results">{{item.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ -->
+
