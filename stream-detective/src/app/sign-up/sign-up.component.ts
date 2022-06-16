@@ -9,7 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  subscription: Subscription
+  subscription: Subscription;
+  streamingServices: string[];
 
   constructor(private authService: AuthService) { }
 
@@ -18,8 +19,13 @@ export class SignUpComponent implements OnInit {
 
   onSignUp(form: NgForm) {
     const userEmail = form.value.email;
-    const userPassword = form.value.password
-    this.authService.signUp(userEmail, userPassword)
+    const userPassword = form.value.password;
+    const dispName = form.value.displayName
+    // const netflix = form.value.netflix
+    // this.streamingServices.push(form.value.netflix)
+    console.log('streaming services', form.value.netflix);
+
+    this.authService.signUp(userEmail, userPassword, dispName)
   }
 
   ngOnDestory() {
@@ -29,3 +35,4 @@ export class SignUpComponent implements OnInit {
 
 
 }
+

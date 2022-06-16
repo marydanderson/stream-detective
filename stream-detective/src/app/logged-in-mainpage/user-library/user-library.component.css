@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&family=Russo+One&display=swap');
+/* 'Russo One' */
+/* 'Roboto' */
+
+:root {
+  --main-red: #c7493a;
+  --main-green: #689775;
+  --dark-tan: #917164;
+  --light-tan: #ad8174;
+  --main-white: rgba(245, 245, 245, 0.824);
+}
+
+.container {
+  margin-top: 1%;
+
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+}
+
+.card {
+  background-color: var(--main-green);
+}
+
+.card-header {
+  font-family: 'Russo One';
+  font-weight: lighter;
+  background-color: var(--main-green);
+  color: white;
+  letter-spacing: 2px;;
+
+}
+
+.list-group-item {
+  font-family: 'Roboto';
+  background-color: var(--main-white)
+}
+
+.badge {
+  background-color: rgb(51, 48, 48);
+  padding: 6px;
+  color: whitesmoke;
+  border-radius: 10px;;
+}
+
+.button-secondary {
+  padding: 3px 5px;
+  border-radius: 3px;
+}
