@@ -68,3 +68,10 @@ h1 {
   word-break: break-word;
   border: 0;
 }
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+
+}
