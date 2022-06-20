@@ -2,6 +2,12 @@ nav {
   background-color:rgb(95, 96, 98);
 }
 
+img{
+  max-width:60px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
 h3 {
   color: var(--main-red);
   font-family: 'Russo One', sans-serif;

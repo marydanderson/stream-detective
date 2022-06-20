@@ -17,3 +17,12 @@ h4 {
 .misc-text {
   color: var(--main-white)
 }
+
+.card {
+  margin-top: 45px;
+  margin-left: 45px;
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 5px;
+  border-color: var(--main-red);
+}
