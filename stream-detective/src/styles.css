@@ -2,8 +2,10 @@
 
 /* colors to reuse */
 
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Russo+One&display=swap');
-/* font-family: 'Russo One', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&family=Russo+One&display=swap');
+/* 'Russo One' */
+/* 'Roboto' */
+
 
 :root {
   --main-red: #c7493a;
@@ -71,4 +73,11 @@ h1 {
   width: fit-content;
   word-break: break-word;
   border: 0;
+}
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+
 }

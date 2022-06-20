@@ -1,1 +1,44 @@
-<p>user-library works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h1>Watchlist Library</h1>
+    </div>
+    <!-- <div class="col-3">
+      <div class="card my-3">
+        FUTURE filter / query here
+      </div>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col">
+      <!-- START OF INDV. WATCHLIST CARD -->
+      <div class="cards-grid">
+        <div class="card" *ngFor="let movie of watchlist">
+          <h5 class="card-header">
+            {{movie.titleName}}
+          </h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <label for="watched" class="mx-2">Watched? </label>
+              <input type="checkbox" id="watched" [(ngModel)]="movie.watched" value="movie.watched" (change)="changeWatchStatus(movie, movie.watched)" class="my-0">
+              <!-- <input type="checkbox" id="watched" [ngModel]="changeWatchStatus(movie, movie.watched)"> -->
+            </li>
+          <!--STREAMING PLATFORM; list w/ ngIf-->
+            <li class="list-group-item" >
+                <div class="badge badge-pill badge-primary mx-1"*ngFor="let stream of movie.streamName">
+                  {{stream}}
+                </div>
+          <!-- END STREAMING PLATFORM NGIF -->
+            </li>
+          </ul>
+          <div class="card-footer text-center">
+            <button class="btn button-secondary" (click)="deleteMovie(movie)">Remove</button>
+          </div>
+        </div>
+      </div>
+      <!-- END OF INDV. WATCHLIST CARD -->
+    </div>
+  </div>
+</div>
+
+
