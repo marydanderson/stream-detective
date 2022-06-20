@@ -12,6 +12,7 @@ import { WatchmodeApiService } from './watchmode-api.service';
 export class SearchComponent implements OnInit {
   reactiveForm : FormGroup;
   movieTitleList = [];
+  movieWithAPIList = [];
   movieTitle : string;
   results = [];
   titleClicked = '';
@@ -33,6 +34,21 @@ export class SearchComponent implements OnInit {
 resetResults(){
   this.results = [];
   this.titleClicked ='';
+  this.movieWithAPIList = [];
+  this.movieTitleList = [];
+}
+
+convertMovieList(mlist){
+  console.log('mlist:', mlist);
+  let index = 0;
+  while (index < mlist.length) {
+    this.movieWithAPIList.push({
+      info : mlist[index],
+      sServices: null
+    });
+    index++;
+  }
+  console.log('converted list:', this.movieWithAPIList);
 }
 
 //this search will get an array of objects which contains Movie Titles and their Ids.
@@ -44,27 +60,37 @@ getSearchResults(){
   this.watchModeAPI.searchForTitle(this.movieTitle).subscribe((data: any[])=>{
     this.movieTitleList = data['title_results'];
     console.log('api search service data: ', data);
+    this.convertMovieList(this.movieTitleList)
   })
 }
 
+/*
 setResults(res : any[], name : string){
   this.results = res;
   this.titleClicked = name;
   console.log('set results method:', this.results);
-}
+}*/
 
 
-clickMovie(movieID : number, name : string){
+clickMovie(movieID : number, name : string, index: number){
+  if(this.movieWithAPIList[index].sServices == null){
   this.watchModeAPI.searchforStreamingServices(movieID).subscribe((data: any[]) => {
-    const filterArray = [203,26,372,380,157,387,388,79,444,371, ];
+    const filterArray = [203,26,372,380,157,387,388,79,444,371];
     const result = data.filter(({ source_id }) => filterArray.includes(source_id));
     console.log('data: ', result)
-    this.setResults(result, name) // logs to console & sets result
     // format API data into usable Object
     this.userLibraryObject = this.watchModeAPI.formatApiData(result, name);
+    console.log("ULO: ", this.userLibraryObject.streamName)
+    this.movieWithAPIList[index].sServices = this.userLibraryObject.streamName
+    if(this.movieWithAPIList[index].sServices.length < 1){
+      this.movieWithAPIList[index].sServices = ['Title Currently Unavailable']
+    }
   })
-  console.log('results: ', this.results)
-  return this.userLibraryObject;
+  return this.userLibraryObject;}
+  else{
+    console.log('Api called before')
+    return this.movieWithAPIList[index].sServices
+  }
   // return this.results
 }
 
