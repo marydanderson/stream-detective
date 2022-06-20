@@ -8,6 +8,7 @@ export class UserLibraryData {
     public id?: string,
     public titleSeasons?: number,
     public titleEpisodes?: number,
+    public watched: boolean = false,
   ) {}
 }
 

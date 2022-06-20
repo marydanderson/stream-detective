@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserLibraryData } from 'src/app/shared/streaming-data.model';
@@ -11,6 +11,8 @@ import { map } from 'rxjs/operators'
 export class UserLibraryService {
   watchlistCollection: AngularFirestoreCollection; // need to specificy <type>
   watchlist: Observable<UserLibraryData[]>
+  movieDoc: AngularFirestoreDocument<UserLibraryData>; //for delteting indv. movie doc
+
 
 
   constructor(
@@ -41,13 +43,15 @@ export class UserLibraryService {
     // have to declare below to prevent "firestore custom Obj error"
     const watchlistData: UserLibraryData = {
       titleName: movie.titleName,
-      streamName: movie.streamName
+      streamName: movie.streamName,
+      watched: false
     }
     this.watchlistCollection
       .add(watchlistData)
       .then((dataAdded) => {
         watchlistData.id = dataAdded.id; //assign firebase created ID to watchlist obj ID
-        console.log('added to firestore:', dataAdded)
+        console.log('added to firestore:', watchlistData.id)
+        window.alert(watchlistData.titleName +  ' was added to your library')
       })
       .catch((error) => {
       console.log('Error adding document to firestore:', error)
@@ -57,6 +61,21 @@ export class UserLibraryService {
   getWatchlist() {
     return this.watchlist;
   }
+
+  removeFromWatchlist(movie) {
+    console.log(movie.id)
+    this.movieDoc = this.watchlistCollection.doc(movie.id)
+    console.log('movie doc:', this.movieDoc)
+    this.movieDoc.delete();
+    // this.projectDoc = this.afs.doc()
+  }
+
+  // update 'watched' field of the watchlist doc in firestore (true or false)
+  updateIfWatched(movie, watched: boolean) {
+    this.movieDoc = this.watchlistCollection.doc(movie.id);
+    this.movieDoc.update({"watched": watched})
+  }
+
 
 
 }

@@ -36,17 +36,32 @@ export class AuthService {
    }
 
   // Sign Up w/ Firebase Auth
-  signUp(email: string, password: string, displayName: string) {
+  // signUp(email: string, password: string, displayName: string) {
+  //   return this.afAuth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then((result) => {
+  //       this.setNewUserData(result.user.email, result.user.uid, displayName); //save to firestore
+  //       console.log('userData UID: ', result.user.displayName);
+  //       this.router.navigate(['home']) //navigate to user home page upon sign up
+  //     })
+  //     .catch((error) => {
+  //       window.alert(error.message)
+  //     })
+
+  // }
+
+  signUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.setNewUserData(result.user.email, result.user.uid, displayName); //save to firestore
-        console.log('userData UID: ', result.user.uid);
+        this.setNewUserData(result.user.email, result.user.uid); //save to firestore
+        console.log('userData UID: ', result.user.displayName);
         this.router.navigate(['home']) //navigate to user home page upon sign up
       })
       .catch((error) => {
-      window.alert(error.message)
-    })
+        window.alert(error.message)
+      })
+
   }
 
   // Sign In w/ Firebase Auth
@@ -54,7 +69,7 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.setUserData(result.user.email, result.user.uid)
+        this.setUserData(result.user.email, result.user.uid) // access from firebase
         this.router.navigate(['home'])
         return this.dataObservable.next(this.userData)
       })
@@ -71,21 +86,21 @@ export class AuthService {
   }
 
   //  Save User Data  upon sign up so it can be saved to local storage | create user profile WORK IN PROGRESS
-  setNewUserData(email: string, uid: string, displayName: string) {
+  setNewUserData(email: string, uid: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
     const userData: User = {
       uid: uid,
       email: email,
-      displayName: displayName
-      // subscribedStream: user.subscribedStream
     };
-    console.log('data set of user signed in: ', userData)
+
+    console.log('data set of user signed in: ', userData.displayName)
     return userRef.set(userData, {
       merge: true
     });
   }
 
-  setUserData(email: string, uid: string,) {
+  //for existing user
+  setUserData(email: string, uid: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
     const userData: User = {
       uid: uid,

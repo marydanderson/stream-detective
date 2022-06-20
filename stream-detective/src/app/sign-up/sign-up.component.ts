@@ -20,12 +20,9 @@ export class SignUpComponent implements OnInit {
   onSignUp(form: NgForm) {
     const userEmail = form.value.email;
     const userPassword = form.value.password;
-    const dispName = form.value.displayName
-    // const netflix = form.value.netflix
-    // this.streamingServices.push(form.value.netflix)
-    console.log('streaming services', form.value.netflix);
-
-    this.authService.signUp(userEmail, userPassword, dispName)
+    // const dispName = form.value.displayName;
+    // console.log('form display name check: ', dispName) // correct info retrieved
+    this.authService.signUp(userEmail, userPassword)
   }
 
   ngOnDestory() {

@@ -24,19 +24,25 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <div id="accordion" *ngFor="let movie of movieWithAPIList; index as i">
-        <div class="card" >
+      <div  *ngFor="let movie of movieWithAPIList; index as i">
+        <div class="card accordion-group" id="accordion" >
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="false">
+              <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="false" data-parent="#accordion">
                 <span (click)="streamingServices = clickMovie(movie.info.id, movie.info.name, i)">{{movie.info.name}}</span>
               </button>
-              <button class="btn btn-secondary float-right" (click)="onAddToLibrary(userLibraryObject)">Add to Library</button>
             </h5>
           </div>
-          <div class="collapse" [attr.id]="'collapse' + i">
+          <div class="collapse" [attr.id]="'collapse' + i" >
             <div class="card-body">
-              <p *ngFor="let item of movie.sServices">{{item}}</p>
+              <div class="row">
+                <div class="col">
+                  <p *ngFor="let item of movie.sServices">{{item}}</p>
+                </div>
+                <div class="col">
+                  <button class="btn btn-secondary float-right" (click)="onAddToLibrary(userLibraryObject)">Add to Library</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
