@@ -96,8 +96,18 @@ clickMovie(movieID : number, name : string, index: number){
 
 
 // Add movie to UserLibrary Firestore on click
-  onAddToLibrary(movie) {
-    this.userLibraryServcice.addToWatchlist(movie)
+  onAddToLibrary(movieIndex) {
+    let movie = this.movieWithAPIList[movieIndex]
+    let formattedMovie = {
+      id : null,
+      streamName: movie.sServices,
+      titleEpisodes: undefined,
+      titleName: movie.info.name,
+      titleSeasons: undefined,
+      watched : false
+    }
+    console.log('Formatted Movie:',formattedMovie)
+    this.userLibraryServcice.addToWatchlist(formattedMovie)
   }
 
 
